@@ -1,12 +1,15 @@
 :root {
-    --primary-color: #2563eb; /* Modern Blue */
-    --text-color: #1f2937; /* Dark Gray */
-    --text-light: #6b7280; /* Medium Gray */
-    --bg-color: #f3f4f6; /* Light Gray Background */
+    --primary-color: #3b82f6; /* Vibrant Blue */
+    --primary-dark: #1e40af;
+    --accent-color: #8b5cf6; /* Purple accent */
+    --text-color: #0f172a; /* Rich Black */
+    --text-light: #64748b; /* Slate Gray */
+    --bg-color: #f8fafc; /* Off-white Background */
     --card-bg: #ffffff;
-    --border-color: #e5e7eb;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
 }
 
 * {
@@ -17,41 +20,63 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
     color: var(--text-color);
-    line-height: 1.6;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
-    padding: 2rem 1rem;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 3rem 1rem;
+    min-height: 100vh;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto;
     background-color: var(--card-bg);
-    padding: 3rem;
-    border-radius: 8px;
-    box-shadow: var(--shadow-md);
+    padding: 3.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
 }
 
 /* Header */
 .resume-header {
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
 }
 
 .resume-header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #111827;
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
 }
 
 .resume-header h2 {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
 }
 
 .contact-info {
@@ -68,11 +93,29 @@ body {
     gap: 0.5rem;
     color: var(--text-light);
     text-decoration: none;
-    transition: color 0.2s;
+    transition: all 0.3s ease;
+    padding: 0.25rem 0;
+    position: relative;
+}
+
+.contact-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    transition: width 0.3s ease;
 }
 
 .contact-link:hover {
     color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.contact-link:hover::after {
+    width: 100%;
 }
 
 /* Sections */
@@ -81,19 +124,42 @@ body {
 }
 
 .section-title {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.5rem;
+    letter-spacing: 0.08em;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 2px;
 }
 
 /* Experience & Education */
 .job-item, .education-item {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.02), rgba(139, 92, 246, 0.02));
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.job-item:hover, .education-item:hover {
+    border-left-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
+    transform: translateX(4px);
+    box-shadow: var(--shadow-sm);
 }
 
 .job-item:last-child, .education-item:last-child {
@@ -109,9 +175,10 @@ body {
 }
 
 .job-title, .edu-degree {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #111827;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: -0.01em;
 }
 
 .job-company, .edu-school {
@@ -145,12 +212,22 @@ body {
 }
 
 .skill-tag {
-    background-color: #eff6ff;
-    color: var(--primary-color);
-    padding: 0.4rem 0.8rem;
-    border-radius: 9999px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+    color: var(--primary-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.skill-tag:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 /* Footer */
@@ -163,25 +240,51 @@ body {
     color: var(--text-light);
 }
 
+/* Summary Text */
+.summary-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(139, 92, 246, 0.03));
+    border-radius: 10px;
+    border-left: 3px solid var(--primary-color);
+}
+
 /* Responsive */
 @media (max-width: 640px) {
     body {
-        padding: 0;
+        padding: 1rem;
     }
-    
+
     .container {
+        padding: 2rem;
+        border-radius: 12px;
+    }
+
+    .container::before {
+        height: 3px;
+    }
+
+    .resume-header {
         padding: 1.5rem;
-        border-radius: 0;
-        box-shadow: none;
     }
 
     .resume-header h1 {
-        font-size: 2rem;
+        font-size: 2.25rem;
+    }
+
+    .resume-header h2 {
+        font-size: 1.15rem;
     }
 
     .job-header, .edu-header {
         flex-direction: column;
         gap: 0.25rem;
+    }
+
+    .job-item, .education-item {
+        padding: 1rem;
     }
 }
 
