@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pedrosanzmtz.github.io/my-resume/sitemap.xml
